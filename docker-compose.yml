@@ -6,22 +6,22 @@ services:
       context: client
       dockerfile: Dockerfile
       args:
-        VARIANT: "6.0"
+        VARIANT: "16"
 
     volumes:
-      - src:/workspace:cached
+      - ./src:/workspace:cached
 
     command: sleep infinity
 
   server:
     build:
-      context: client
+      context: server
       dockerfile: Dockerfile
       args:
         VARIANT: "6.0"
 
     volumes:
-      - src:/workspace:cached
+      - ./src:/workspace:cached
 
     command: sleep infinity
 
@@ -41,7 +41,7 @@ services:
       - server
 
     volumes:
-      - caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
 
   db:
     image: postgres:alpine
