@@ -9,7 +9,7 @@ services:
         VARIANT: "16"
 
     volumes:
-      - ./src:/workspace:cached
+      - ./client/workspace:/workspace:cached
 
     command: sleep infinity
 
@@ -21,7 +21,7 @@ services:
         VARIANT: "6.0"
 
     volumes:
-      - ./src:/workspace:cached
+      - ./server/workspace:/workspace:cached
 
     command: sleep infinity
 
@@ -34,7 +34,7 @@ services:
 
     ports:
       - 80:80
-      - 443:433
+      - 443:443
 
     links:
       - client

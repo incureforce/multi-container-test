@@ -1,2 +1,5 @@
 ARG VARIANT="16"
-FROM mcr.microsoft.com/vscode/devcontainers/node:0-${VARIANT}
+FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
+
+USER node
+WORKDIR /workspace

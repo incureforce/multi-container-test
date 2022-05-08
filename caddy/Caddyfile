@@ -1,3 +1,4 @@
 localhost {
-    respond "Hello, world!"
+    reverse_proxy /api/* server:4000
+    reverse_proxy /* client:4200
 }
