@@ -1,4 +1,9 @@
 localhost {
-    reverse_proxy /api/* server:4000
-    reverse_proxy /* client:4200
+    reverse_proxy /api/* http://server:4000 {
+        header_up Host {upstream_hostport}
+    }
+
+    reverse_proxy /* http://client:4200 {
+        header_up Host {upstream_hostport}
+    }
 }

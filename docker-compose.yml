@@ -7,10 +7,12 @@ services:
       dockerfile: Dockerfile
       args:
         VARIANT: "16"
-
+    links:
+      - db
+    expose:
+      - 4200
     volumes:
       - ./client/workspace:/workspace:cached
-
     command: sleep infinity
 
   server:
@@ -19,27 +21,20 @@ services:
       dockerfile: Dockerfile
       args:
         VARIANT: "6.0"
-
+    expose:
+      - 4000
     volumes:
       - ./server/workspace:/workspace:cached
-
     command: sleep infinity
-
-    links:
-      - db
-
   caddy:
     image: caddy:alpine
     restart: unless-stopped
-
-    ports:
-      - 80:80
-      - 443:443
-
     links:
       - client
       - server
-
+    ports:
+      - 80:80
+      - 443:443
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
 
@@ -57,3 +52,6 @@ services:
 
 volumes:
   postgres-data: null
+
+networks:
+  internal: null
