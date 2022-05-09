@@ -4,27 +4,30 @@ services:
   client:
     build:
       context: client
-      dockerfile: Dockerfile
+      dockerfile: .devcontainer/Dockerfile
       args:
         VARIANT: "16"
 
     volumes:
-      - ./client/workspace:/workspace:cached
+      - ./client:/workspace:cached
 
     command: sleep infinity
+
+    hostname: client
 
   server:
     build:
       context: server
-      dockerfile: Dockerfile
+      dockerfile: .devcontainer/Dockerfile
       args:
         VARIANT: "6.0"
 
     volumes:
-      - ./server/workspace:/workspace:cached
+      - ./server:/workspace:cached
 
     command: sleep infinity
 
+    hostname: server
     links:
       - db
 

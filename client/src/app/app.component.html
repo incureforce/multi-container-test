@@ -1,0 +1,5 @@
+<h1>Mutli Container Test</h1>
+
+<ng-container *ngIf="fromServerTestModel | async as model">
+  <pre>{{ model | json }}</pre>
+</ng-container>
